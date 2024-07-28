@@ -53,7 +53,7 @@ julia> stock_bars_latest("AAPL")
 ```
 
 """
-function stock_bars_latest(symbol::AbstractString;
+function stock_bars_latest(symbol::Union{AbstractString, Vector{AbstractString}};
                     feed = nothing, currency = nothing)
 
   url = join([BASE_STOCK_URL, "bars", "latest"], "/")
