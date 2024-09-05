@@ -25,7 +25,7 @@ end
 
 function submit_order(params)
   url = join([TRADING_API_URL, "orders?"], "/")
-  res = HTTP.post(url, body=json(params), headers = HEADERS[])
+  res = HTTP.post(url, body=json(params), headers = HEADERS[]; readtimeout=60, timeout=120)
   JSON.parse(String(res.body))
 end
 
