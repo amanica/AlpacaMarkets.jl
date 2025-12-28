@@ -25,7 +25,7 @@ end
 
 function submit_order(params)
   url = join([TRADING_API_URL, "orders?"], "/")
-  res = HTTP.post(url, body=json(params), headers = HEADERS[], readtimeout=60, timeout=120, verbose=1)
+  res = HTTP.post(url, body=JSON.json(params), headers = HEADERS[], readtimeout=60, timeout=120, verbose=1)
   JSON.parse(String(res.body))
 end
 
@@ -152,7 +152,7 @@ function replace_an_order(;order_id::String, params::Dict)
 
   url = join([TRADING_API_URL, "orders", order_id], "/")
 
-  res = HTTP.patch(url, body=json(params), headers = HEADERS[])
+  res = HTTP.patch(url, body=JSON.json(params), headers = HEADERS[])
   resdict = JSON.parse(String(res.body))
   resdf = DataFrame(resdict)
   return resdf
